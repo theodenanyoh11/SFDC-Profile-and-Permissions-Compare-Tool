@@ -1,0 +1,131 @@
+<template>
+    <lightning-card title="Profile & Permission Comparison Tool" icon-name="custom:custom55">
+        <!-- Profile Selection -->
+        <div class="slds-p-around_medium">
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+                    <lightning-combobox
+                        label="Profile 1"
+                        value={profile1Id}
+                        options={profileOptions}
+                        onchange={handleProfile1Change}
+                        placeholder="Select Profile 1">
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+                    <lightning-combobox
+                        label="Profile 2"
+                        value={profile2Id}
+                        options={profileOptions}
+                        onchange={handleProfile2Change}
+                        placeholder="Select Profile 2">
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-grid slds-grid_vertical-align-end">
+                    <lightning-button
+                        variant="brand"
+                        label="Compare"
+                        onclick={handleCompare}
+                        disabled={isCompareDisabled}
+                        class="slds-m-top_medium">
+                    </lightning-button>
+                </div>
+            </div>
+
+            <!-- Filter Options -->
+            <template if:true={comparisonResult}>
+                <div class="slds-m-top_medium">
+                    <lightning-radio-group
+                        label="Show"
+                        options={filterOptions}
+                        value={filterValue}
+                        onchange={handleFilterChange}
+                        type="button">
+                    </lightning-radio-group>
+                </div>
+            </template>
+        </div>
+
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-is-relative slds-p-around_xx-large">
+                <lightning-spinner alternative-text="Comparing profiles..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Summary Cards -->
+        <template if:true={comparisonResult}>
+            <div class="slds-p-horizontal_medium slds-m-top_small">
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <template for:each={summaryCards} for:item="card">
+                        <div key={card.label} class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6 slds-p-vertical_xx-small">
+                            <div class={card.cssClass}>
+                                <p class="slds-text-title_caps slds-m-bottom_xx-small">{card.label}</p>
+                                <p class="slds-text-heading_large">{card.different}<span class="slds-text-heading_small">/{card.total}</span></p>
+                                <p class="slds-text-body_small">differences</p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <!-- Comparison Results Tabs -->
+        <template if:true={comparisonResult}>
+            <div class="slds-p-around_medium">
+                <lightning-tabset>
+                    <lightning-tab label={appsTabLabel}>
+                        <c-comparison-table
+                            data={filteredApps}
+                            profile1-name={comparisonResult.profile1Name}
+                            profile2-name={comparisonResult.profile2Name}>
+                        </c-comparison-table>
+                    </lightning-tab>
+
+                    <lightning-tab label={objectsTabLabel}>
+                        <c-object-settings-table
+                            data={filteredObjects}
+                            profile1-name={comparisonResult.profile1Name}
+                            profile2-name={comparisonResult.profile2Name}
+                            profile1-id={profile1Id}
+                            profile2-id={profile2Id}
+                            show-differences-only={showDifferencesOnly}>
+                        </c-object-settings-table>
+                    </lightning-tab>
+
+                    <lightning-tab label={sysPermsTabLabel}>
+                        <c-comparison-table
+                            data={filteredSystemPerms}
+                            profile1-name={comparisonResult.profile1Name}
+                            profile2-name={comparisonResult.profile2Name}>
+                        </c-comparison-table>
+                    </lightning-tab>
+
+                    <lightning-tab label={apexTabLabel}>
+                        <c-comparison-table
+                            data={filteredApexClasses}
+                            profile1-name={comparisonResult.profile1Name}
+                            profile2-name={comparisonResult.profile2Name}>
+                        </c-comparison-table>
+                    </lightning-tab>
+
+                    <lightning-tab label={vfTabLabel}>
+                        <c-comparison-table
+                            data={filteredVfPages}
+                            profile1-name={comparisonResult.profile1Name}
+                            profile2-name={comparisonResult.profile2Name}>
+                        </c-comparison-table>
+                    </lightning-tab>
+
+                    <lightning-tab label={customPermsTabLabel}>
+                        <c-comparison-table
+                            data={filteredCustomPerms}
+                            profile1-name={comparisonResult.profile1Name}
+                            profile2-name={comparisonResult.profile2Name}>
+                        </c-comparison-table>
+                    </lightning-tab>
+                </lightning-tabset>
+            </div>
+        </template>
+    </lightning-card>
+</template>

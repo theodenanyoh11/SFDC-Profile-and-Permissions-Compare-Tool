@@ -1,0 +1,27 @@
+.expand-col {
+    width: 40px;
+    max-width: 40px;
+}
+
+.highlight-row {
+    background-color: #fef3cd !important;
+}
+
+.diff-icon {
+    --sds-c-icon-color-foreground-default: #b86e00;
+}
+
+.value-cell {
+    display: flex;
+    align-items: center;
+}
+
+.crud-display {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.fls-section {
+    background-color: #f3f3f3;
+}

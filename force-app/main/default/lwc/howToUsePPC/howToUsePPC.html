@@ -1,0 +1,144 @@
+<template>
+    <lightning-card title="How to Use the Profile & Permission Comparison Tool" icon-name="custom:custom14">
+
+        <!-- Overview -->
+        <div class="slds-p-around_medium">
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <h2 class="slds-text-heading_medium slds-m-bottom_small">Overview</h2>
+                <p class="slds-text-body_regular">
+                    The Profile &amp; Permission Comparison Tool (P&amp;PC) lets you compare two Salesforce Profiles
+                    side-by-side and quickly identify differences across permissions, object access, field-level
+                    security, and more. This is useful for auditing, troubleshooting access issues, or reviewing
+                    profiles before making changes.
+                </p>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <h2 class="slds-text-heading_medium slds-m-bottom_small">Getting Started</h2>
+                <ol class="slds-list_ordered slds-m-left_medium">
+                    <li class="slds-m-bottom_x-small">
+                        Navigate to the <strong>Profile Comparison</strong> tab from the app navigation bar.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        Use the <strong>Profile 1</strong> dropdown to select the first profile you want to compare.
+                        Profiles are listed with their license type in parentheses.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        Use the <strong>Profile 2</strong> dropdown to select the second profile.
+                        You must select two different profiles.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        Click the <strong>Compare</strong> button to run the comparison.
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Reading Results -->
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <h2 class="slds-text-heading_medium slds-m-bottom_small">Reading the Results</h2>
+
+                <h3 class="slds-text-heading_small slds-m-bottom_x-small slds-m-top_small">Summary Cards</h3>
+                <p class="slds-text-body_regular slds-m-bottom_small">
+                    At the top of the results, six summary cards show the number of differences found in each
+                    category. Cards with differences appear highlighted in yellow. Cards with no differences
+                    appear in green.
+                </p>
+
+                <h3 class="slds-text-heading_small slds-m-bottom_x-small slds-m-top_small">Comparison Tabs</h3>
+                <p class="slds-text-body_regular slds-m-bottom_x-small">
+                    Results are organized into six tabs. Each tab label shows the number of differences found
+                    in that category:
+                </p>
+                <ul class="slds-list_dotted slds-m-left_medium slds-m-bottom_small">
+                    <li class="slds-m-bottom_x-small">
+                        <strong>Assigned Apps</strong> &mdash; Shows which apps are visible or hidden for each profile.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        <strong>Object Settings</strong> &mdash; Displays CRUD permissions (Create, Read, Edit, Delete,
+                        View All, Modify All) for each object. Click the arrow icon on any row to expand and view
+                        Field-Level Security (FLS) for that object.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        <strong>System Permissions</strong> &mdash; Lists all system-level permissions
+                        (e.g., API Enabled, Modify All Data) and whether each is enabled or disabled.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        <strong>Apex Classes</strong> &mdash; Shows which Apex classes each profile has access to.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        <strong>Visualforce Pages</strong> &mdash; Shows which Visualforce pages each profile has access to.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        <strong>Custom Permissions</strong> &mdash; Shows which custom permissions are assigned to each profile.
+                    </li>
+                </ul>
+
+                <h3 class="slds-text-heading_small slds-m-bottom_x-small slds-m-top_small">Difference Indicators</h3>
+                <p class="slds-text-body_regular slds-m-bottom_small">
+                    Rows where the two profiles differ are highlighted in yellow with a warning icon.
+                    Rows that are identical between the two profiles appear with no highlight.
+                </p>
+            </div>
+
+            <!-- Object Settings & FLS -->
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <h2 class="slds-text-heading_medium slds-m-bottom_small">Object Settings &amp; Field-Level Security</h2>
+                <p class="slds-text-body_regular slds-m-bottom_small">
+                    The Object Settings tab uses a CRUD format displayed as a six-character code:
+                </p>
+                <div class="slds-box slds-theme_shade slds-m-bottom_small">
+                    <p class="crud-legend"><strong>C</strong> = Create &nbsp; <strong>R</strong> = Read &nbsp;
+                    <strong>E</strong> = Edit &nbsp; <strong>D</strong> = Delete &nbsp;
+                    <strong>V</strong> = View All &nbsp; <strong>M</strong> = Modify All</p>
+                    <p class="slds-m-top_x-small slds-text-body_regular">
+                        Example: <span class="crud-example">CRED--</span> means Create, Read, Edit, and Delete
+                        are enabled; View All and Modify All are disabled.
+                    </p>
+                </div>
+                <p class="slds-text-body_regular slds-m-bottom_small">
+                    To view Field-Level Security for an object, click the <strong>chevron icon</strong> on the
+                    left side of any object row. This will expand to show each field with its Read and Write
+                    access for both profiles. FLS is loaded on demand to keep the tool fast.
+                </p>
+            </div>
+
+            <!-- Filtering -->
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <h2 class="slds-text-heading_medium slds-m-bottom_small">Filtering Results</h2>
+                <p class="slds-text-body_regular">
+                    Use the <strong>Show</strong> toggle at the top of the results to switch between:
+                </p>
+                <ul class="slds-list_dotted slds-m-left_medium slds-m-top_x-small">
+                    <li class="slds-m-bottom_x-small">
+                        <strong>All</strong> &mdash; Displays every item, whether the profiles match or not.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        <strong>Differences Only</strong> &mdash; Hides matching items and shows only the rows
+                        where the two profiles differ. This also applies to expanded Field-Level Security rows.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tips -->
+            <div class="slds-box slds-theme_default">
+                <h2 class="slds-text-heading_medium slds-m-bottom_small">Tips</h2>
+                <ul class="slds-list_dotted slds-m-left_medium">
+                    <li class="slds-m-bottom_x-small">
+                        Compare profiles with the same license type for the most meaningful results.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        Use <strong>Differences Only</strong> mode to quickly audit what changed between two profiles.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        Expand object rows to check Field-Level Security only when needed &mdash; FLS is loaded on
+                        demand to keep performance optimal.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        The summary cards at the top give you a quick snapshot before diving into each tab.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </lightning-card>
+</template>

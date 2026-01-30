@@ -1,0 +1,17 @@
+# Salesforce CLI
+.sf/
+.sfdx/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if LWC local dev is added later)
+node_modules/
+
+# Logs
+*.log

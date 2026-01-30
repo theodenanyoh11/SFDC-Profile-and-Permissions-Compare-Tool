@@ -1,0 +1,96 @@
+<template>
+    <div class="slds-scrollable_x">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col" class="expand-col"></th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Object">Object</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate">{profile1CrudHeader}</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate">{profile2CrudHeader}</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={processedData} for:item="row">
+                    <tr key={row.objectName} class={row.rowClass}>
+                        <td class="expand-col">
+                            <lightning-button-icon
+                                icon-name={row.expandIcon}
+                                alternative-text="Toggle Field-Level Security"
+                                size="small"
+                                variant="bare"
+                                onclick={handleToggleFls}
+                                data-object={row.objectName}>
+                            </lightning-button-icon>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title={row.objectLabel}>
+                                {row.objectLabel}
+                                <span class="slds-text-body_small slds-text-color_weak slds-m-left_xx-small">({row.objectName})</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate value-cell" title={row.profile1Crud}>
+                                <template if:true={row.isDifferent}>
+                                    <lightning-icon icon-name="utility:warning" size="xx-small"
+                                        alternative-text="Different" class="slds-m-right_xx-small diff-icon">
+                                    </lightning-icon>
+                                </template>
+                                <span class="crud-display">{row.profile1Crud}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate value-cell" title={row.profile2Crud}>
+                                <template if:true={row.isDifferent}>
+                                    <lightning-icon icon-name="utility:warning" size="xx-small"
+                                        alternative-text="Different" class="slds-m-right_xx-small diff-icon">
+                                    </lightning-icon>
+                                </template>
+                                <span class="crud-display">{row.profile2Crud}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- FLS Expandable Section -->
+                    <template if:true={row.isExpanded}>
+                        <tr key={row.flsKey} class="fls-section">
+                            <td colspan="4" class="slds-p-left_xx-large slds-p-vertical_small">
+                                <template if:true={row.isLoadingFls}>
+                                    <div class="slds-is-relative slds-p-around_medium">
+                                        <lightning-spinner alternative-text="Loading field permissions" size="small">
+                                        </lightning-spinner>
+                                    </div>
+                                </template>
+                                <template if:false={row.isLoadingFls}>
+                                    <div class="slds-text-title_caps slds-m-bottom_xx-small">
+                                        Field-Level Security
+                                    </div>
+                                    <c-comparison-table
+                                        data={row.fieldComparisons}
+                                        profile1-name={profile1Name}
+                                        profile2-name={profile2Name}>
+                                    </c-comparison-table>
+                                </template>
+                            </td>
+                        </tr>
+                    </template>
+                </template>
+                <template if:false={hasData}>
+                    <tr>
+                        <td colspan="4" class="slds-text-align_center slds-p-around_medium">
+                            No object data to display
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <!-- CRUD Legend -->
+        <div class="slds-p-around_small slds-text-body_small slds-text-color_weak">
+            CRUD Legend: C = Create, R = Read, E = Edit, D = Delete, V = View All, M = Modify All
+        </div>
+    </div>
+</template>

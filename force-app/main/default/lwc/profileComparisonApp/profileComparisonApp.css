@@ -1,0 +1,13 @@
+:host {
+    display: block;
+}
+
+.slds-theme_success {
+    background-color: #4bca81;
+    color: #fff;
+    border-radius: 0.25rem;
+}
+
+.slds-theme_warning {
+    border-radius: 0.25rem;
+}

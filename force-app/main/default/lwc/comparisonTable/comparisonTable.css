@@ -1,0 +1,12 @@
+.highlight-row {
+    background-color: #fef3cd !important;
+}
+
+.diff-icon {
+    --sds-c-icon-color-foreground-default: #b86e00;
+}
+
+.value-cell {
+    display: flex;
+    align-items: center;
+}

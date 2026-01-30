@@ -1,0 +1,55 @@
+<template>
+    <div class="slds-scrollable_x">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col" class="slds-cell-wrap">
+                        <div class="slds-truncate" title="Item">Item</div>
+                    </th>
+                    <th scope="col" class="slds-cell-wrap">
+                        <div class="slds-truncate" title={profile1Name}>{profile1Name}</div>
+                    </th>
+                    <th scope="col" class="slds-cell-wrap">
+                        <div class="slds-truncate" title={profile2Name}>{profile2Name}</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={processedData} for:item="row">
+                    <tr key={row.itemName} class={row.rowClass}>
+                        <td>
+                            <div class="slds-truncate" title={row.itemLabel}>{row.itemLabel}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate value-cell" title={row.profile1Value}>
+                                <template if:true={row.isDifferent}>
+                                    <lightning-icon icon-name="utility:warning" size="xx-small"
+                                        alternative-text="Different" class="slds-m-right_xx-small diff-icon">
+                                    </lightning-icon>
+                                </template>
+                                {row.profile1Value}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate value-cell" title={row.profile2Value}>
+                                <template if:true={row.isDifferent}>
+                                    <lightning-icon icon-name="utility:warning" size="xx-small"
+                                        alternative-text="Different" class="slds-m-right_xx-small diff-icon">
+                                    </lightning-icon>
+                                </template>
+                                {row.profile2Value}
+                            </div>
+                        </td>
+                    </tr>
+                </template>
+                <template if:false={hasData}>
+                    <tr>
+                        <td colspan="3" class="slds-text-align_center slds-p-around_medium">
+                            No data to display
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</template>
