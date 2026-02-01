@@ -34,7 +34,9 @@ Use the install link to add the tool directly to your Salesforce org:
 **Sandbox:**
 `https://test.salesforce.com/packaging/installPackage.apexp?p0=PACKAGE_ID`
 
-> Replace `PACKAGE_ID` with the actual package ID after packaging.
+> Replace `PACKAGE_ID` with the actual package version ID (starts with `04t`).
+
+When prompted, choose **Install for Admins Only** or **Install for All Users** depending on who should have access.
 
 ### Option 2: Deploy from Source
 
@@ -54,7 +56,35 @@ Use the install link to add the tool directly to your Salesforce org:
    sf project deploy start -d force-app -o my-org
    ```
 
-4. Assign the app to the relevant profiles or open the App Launcher and search for **Profile & Permission Comparison**.
+## Post-Install Setup
+
+After installing the package (either method), complete these steps to grant access:
+
+### 1. Assign Apex Class Access
+
+Go to **Setup > Profiles** (or create a Permission Set) and enable access for these Apex classes:
+
+- `ProfileComparisonController`
+- `ProfileComparisonModels`
+- `ProfileComparisonService`
+- `ProfileMetadataService`
+
+### 2. Set Tab Visibility
+
+Under the same Profile or Permission Set, set these tabs to **Default On**:
+
+- `Profile Comparison`
+- `How to use P&PC`
+
+### 3. Make the App Visible
+
+Under **App Visibility** (or **Assigned Connected Apps**), make the **Profile & Permission Comparison** app visible.
+
+### 4. Open the App
+
+Go to the **App Launcher** (grid icon in the top-left) and search for **Profile & Permission Comparison**.
+
+> **Tip:** If you installed for "All Users," Apex class access and tab visibility are granted automatically. If you installed for "Admins Only," you'll need to manually assign access to other profiles.
 
 ## Project Structure
 

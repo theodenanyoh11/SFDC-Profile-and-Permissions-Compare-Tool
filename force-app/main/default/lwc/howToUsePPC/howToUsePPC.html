@@ -120,6 +120,42 @@
                 </ul>
             </div>
 
+            <!-- Post-Install Setup -->
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <h2 class="slds-text-heading_medium slds-m-bottom_small">Post-Install Setup (Admins)</h2>
+                <p class="slds-text-body_regular slds-m-bottom_small">
+                    If you installed this tool via an unmanaged package for <strong>Admins Only</strong>,
+                    follow these steps to grant access to other users:
+                </p>
+                <ol class="slds-list_ordered slds-m-left_medium">
+                    <li class="slds-m-bottom_x-small">
+                        Go to <strong>Setup &gt; Profiles</strong> (or create a Permission Set).
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        Under <strong>Apex Class Access</strong>, enable access for:
+                        <em>ProfileComparisonController</em>,
+                        <em>ProfileComparisonModels</em>,
+                        <em>ProfileComparisonService</em>, and
+                        <em>ProfileMetadataService</em>.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        Under <strong>Tab Settings</strong>, set both <em>Profile Comparison</em> and
+                        <em>How to use P&amp;PC</em> to <strong>Default On</strong>.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        Under <strong>App Visibility</strong>, make the
+                        <em>Profile &amp; Permission Comparison</em> app visible.
+                    </li>
+                    <li class="slds-m-bottom_x-small">
+                        Users can then find the app in the <strong>App Launcher</strong> by searching
+                        for &quot;Profile &amp; Permission Comparison.&quot;
+                    </li>
+                </ol>
+                <p class="slds-text-body_regular slds-m-top_small">
+                    If you installed for <strong>All Users</strong>, these permissions are granted automatically.
+                </p>
+            </div>
+
             <!-- Tips -->
             <div class="slds-box slds-theme_default">
                 <h2 class="slds-text-heading_medium slds-m-bottom_small">Tips</h2>
