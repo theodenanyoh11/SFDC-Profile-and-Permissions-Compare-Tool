@@ -29,12 +29,12 @@ A native Salesforce Lightning application that compares two Profiles side-by-sid
 Use the install link to add the tool directly to your Salesforce org:
 
 **Production/Developer Edition:**
-`https://login.salesforce.com/packaging/installPackage.apexp?p0=PACKAGE_ID`
+
+https://login.salesforce.com/packaging/installPackage.apexp?p0=04tWB000000K309
 
 **Sandbox:**
-`https://test.salesforce.com/packaging/installPackage.apexp?p0=PACKAGE_ID`
 
-> Replace `PACKAGE_ID` with the actual package version ID (starts with `04t`).
+https://test.salesforce.com/packaging/installPackage.apexp?p0=04tWB000000K309
 
 When prompted, choose **Install for Admins Only** or **Install for All Users** depending on who should have access.
 
